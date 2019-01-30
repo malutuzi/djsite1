@@ -1,0 +1,87 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/about.js'%}'></script>
+{% endblock linkscript %}
+
+{% block base %}
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+            box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444; margin-top: 5px;margin-bottom: 5px;">
+                <h4><b>关于我</b></h4>
+                <ul>
+                    <li>北京房地产发烧友，跑盘爱好者</li>
+                    <li>曾就职于BAT、知名VC，曾自主创业并获得顶级风投投资</li>
+                    <li>04年于蓝旗营理工毕业后，买入人生第一套房</li>
+                    <li>此后10余年看房保守估计超过2000套，仅个人买/卖房屋就达20余次</li>
+                    <li>在北京朝阳、海淀、昌平、丰台、西城、大兴等区均进行过房屋交易</li>
+                    <li>个人公众号、微博号、知识星球号均为<b>“北京买房那些事”</b>，你可以和大家一样叫我“事儿哥”</li>
+                </ul>
+                <h5></h5>
+                <br/>            
+            </div>
+        </div>  <!--  row-->
+
+        <div class="row" >
+                <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+                box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444; margin-top: 5px;margin-bottom: 5px;">
+                    <h4><b>关于本站</b></h4>
+                    <ul>
+                        <li>“做最有态度的房产数据站”---几套房</li>
+                        <li>作为快10年没在一线写码的人，所有工作由我在业余时间完成</li>
+                        <li>制作的初衷是希望帮助大家都能在北京买到“几套房”</li>
+                        <li>同时更希望认识更多志同道合的朋友(如同目前已经认识的许多一样）</li>
+                        <li>由于缺乏美工和前端，我为本站的外观表示道歉</li>
+                        <li>移动端将是未来的重点，但由于还有全职工作，不能承诺上线时间</li>
+                        <li id='contact'>本站欢迎任何意见和建议。所有善意沟通，无论多忙我都会回复。</li>
+                        <li>如果凑巧，也许你上午的建议，下午就能实现。试试<a href="#contact">联系我</a>吧。</li>
+                    </ul>
+                    <br/>            
+                </div>
+        </div>  <!--  row-->
+
+        <div class="row" >
+                <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+                box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444; margin-top: 5px;margin-bottom: 5px;">
+                    <h4><b>如何联系我(三种方式)：</b></h4>
+                    
+                    <ul>
+                        
+                        <li><b>加入我的“知识星球”(小密圈)</b></li>
+                        <h5>这应该是最能稳定联系到我的方式。所有知识星球的提问，我在24小时内一定会回答</h5>
+                        <h5>知识星球可以提任何你想到的问题，不一定是房产方面。房产、投资、股市、职场...</h5>
+                        <h5>星球里面除了我，还有很多其他房产、贷款、投资等方面的大咖</h5>
+                        <img src='{% static 'app1/img/about-1.jpg' %}' style="border:1px solid black"/>
+
+                        <li><b>关注我的微信公众号、微博号</b></li>
+                        <h5>微信公众号名：<b>北京买房那些事</b>；公众号ID：<b>bjmfnxs</b></h5> 
+                        <h5>最佳方式是选择一篇我最近发的公号文章，然后文章后"留言"</h5>
+                        <h5>注意不是"发消息"，消息超过48小时如果我没回复，微信设置就不能再回复，留言不受此限制</h5> 
+                        <img src='{% static 'app1/img/about-2.jpg' %}' style="border:1px solid black"/>
+                        <br/>
+                        <h5>微博名：<b>北京买房那些事</b>；</h5>  
+                        <img src='{% static 'app1/img/about-3.jpg' %}' style="border:1px solid black"/>
+                        <h5>选择最近发的博文，在下方“评论”，可以最快得到我回复。“私信”因为太多，不保证回复。</h5>
+
+                        <li><b>写信给我</b></li>
+                        <h5>我的邮箱 feedback@jitaofang.com</h5>
+
+                        <li><b>其他方式（微信、群、线下等）</b></li>
+                        <h5>目前我没有微信群，因为还有其他工作，感觉维护群很耗精力，见谅。</h5>
+                        <h5>如果希望和我单独交流，在"知识星球"留言可以加我为微信好友</h5>
+                        <h5>线上聊过觉得有必要线下沟通、见见事儿哥真人的，可以约起。</h5>
+
+                        
+                    </ul>
+                    <br/>            
+                </div>
+        </div>  <!--  row-->
+
+
+</div>
+
+
+{% endblock base %}

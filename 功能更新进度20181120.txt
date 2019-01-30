@@ -1,0 +1,149 @@
+20181120日
+
+
+一、首页
+显示日期，显示北京月均价
+二、趋势图表
+（1）网签和链家成交趋势 最近7、15天
+
+（2）套均面积趋势图 最近7、15天
+三、数据查询
+    只有10月以来数据
+
+四、小区查询
+    
+
+五、房源查询
+    目前是直接去查询lufangjia，还没有改为
+    先查数据库。（不过这样可以查询已经成交的）
+
+2018-12-8
+1 crawleralllib  更新贝壳在售数据错误，采用链家首页数据
+2 index.html  增加更新记录  
+3. allajkshequ.sql 增加“金域华府”
+
+
+2018-12-12
+1、修改models.py ，增加 allljborkers 数据表
+2、运行 makemigrations migrate
+3、增加 updataborkers.py
+4、修改views.py
+5、修改 shequ.html   shequ.js.
+6、修改 index.html
+7、略微修改 shequ2.html。
+===
+8、修改 crawlerljshequ.py ，更新 Allljshequ数据表
+
+
+2018-12-16
+月度涨跌可以点击
+1、新增shequchange.html、shequchange.js
+2、修改urls.py views.py 
+3、更新index.html
+4、轻微修改shequ.html、shequ2.html
+
+昨日新增笋盘。
+修改 views.py 
+修改 pie.html \pie.js
+修改 index.html
+
+每日涨跌可以查询
+1、修改 crawlerljallhouselib.py 
+2、新增housechange.html、housechange.js
+3、修改urls.py views.py 
+4、更新index.html
+5、轻微修改house.html
+
+
+base.html,index.html house.html housechange.html shequchange.html,shequ.html,shequ2.html,pie.html,
+shequchange.js,housechange.js,pie.js,
+crawlerljallhouselib.py 
+urls.py views.py 
+
+
+2018-12-28
+
+house.html  增加 一个链接到到 house2
+house2.html
+house2.js
+url.py
+view.py
+======
+更改 view.py
+更改 echartslib.py
+house.html  修改一个链接到shequ查询
+shequ.html  修改按钮文案  增加区块内容
+shequ.js
+index.html
+
+
+
+p_all = Allpies.objects.filter(isDelete = 0,isSold = 0)
+    p_new = Allpies.objects.filter(isDelete = 0,isSold = 0,createTime__startswith=yesterday)
+
+2018-12-29
+
+增加社区近期已售房源
+更新 alldealhouse.sql  allsalehouse.sql   OK
+view.py
+crawlerljdealhouselib.py
+crawlerljallhouselib
+shequ.html
+
+
+
+2018-01-03
+更新views.py ，为wx1.0版做好了全部数据接口。
+
+2018-01-04
+修改Pie.html，跳转到调价历史；
+修改view.html，倒序排列各区的。
+修改index.html
+
+2018-01-05
+增加 crawlerallshequdeal2.py
+
+修改 models.py
+
+lid,hid,hur,ldistrict,shequ_name
+shape square ori floor,
+deal_date,deal_price,
+backup1 backup2
+isDelete
+createTime
+
+
+2018-01-06
+住建委网站更新，更新crawleralllib.py
+
+
+2019-01-09
+base
+index
+mobile
+views.py
+xcx8.png
+======
+2019-01-09
+小程序
+
+index.wxml
+index.js
+/wqtrend
+/ljtrend
+
+app.json
+
+2019-1-22
+views.py
+
+house.html shequ.html index.html 
+
+crawlerlufangjialib.py(修改get_history的bug）
+
+2019-01-29
+
+views.py
+index.html
+
+

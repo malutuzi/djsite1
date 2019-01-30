@@ -1,0 +1,96 @@
+
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+<script src='{% static 'app1/js/query.js'%}'></script>
+{% endblock linkscript %}
+
+
+{% block base %}
+        <br/>
+        <h4><b>北京房市历史数据查询</b></h4>
+            
+        <h6>历史数据范围：从<b>2016-3-20</b>号到<b>{{newestdate|date:'Y-m-d'}}</b>号</h6>
+        <br/>
+
+        <form action="/quering/" method="POST">
+            {% csrf_token %}
+            点选或输入你想查询的日期:<input type="date" name="userdate" />
+            <input type="submit" value='确定' />
+        </form>
+        {% if userdate != '' %}
+            <span>您输入的查询日期是：<b>{{userdate}}</b>,当日数据如下：</span>
+            <br/>
+            {% if result != '' %}
+            
+                <table class="table table-bordered table-condensed" style="width: 200px;">
+                    <thead>
+                        <tr class='info'>
+                            <th>项目</th>
+                            <th>数据</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="2" align="center" valign="middle"><b>建委数据</b></td>
+                        <tr>
+                            <td>二手住宅网签量</td>
+                            <td>{{result.ajw_sign}}</td>
+                        </tr>
+                        <tr>
+                            <td>总成交面积</td>
+                            <td>{{result.ajw_tarea}}</td>
+                        </tr>
+                        <tr>
+                            <td>套均面积</td>
+                            <td>{{result.ajw_aarea}}</td>
+                        </tr>
+                        
+                        <tr>
+                            <td colspan="2" align="center" valign="middle"><b>链家数据</b></td>
+                           
+                        </tr>
+                        <tr >
+                            <td>成交量</td>
+                            <td>{{result.alj_deal}}</td>
+                        </tr>
+                        <tr>
+                            <td>新增房</td>
+                            <td>{{result.alj_house}}</td>
+                        </tr>
+                        <tr>
+                            <td>新增客</td>
+                            <td>{{result.alj_customer}}</td>
+                        </tr>
+                        <tr>
+                            <td>新增带看</td>
+                            <td>{{result.alj_visit}}</td>
+                        </tr>
+                        <tr>
+                            <td>客房比</td>
+                            <td>{{result.alj_cuh_ratio}}</td>
+                        </tr>
+                        <tr>
+                            <td>看房比</td>
+                            <td>{{result.alj_vih_ratio}}</td>
+                        </tr>
+                        <tr>
+                            <td>在售房源数</td>
+                            <td>{{result.snumber}}</td>
+                        </tr>
+                    </tbody>
+
+                </table>
+
+            {% else %}
+                <span>抱歉，暂时没有该日期的数据。</span>
+            {% endif %}
+        
+        {% endif %}
+
+
+        
+
+{% endblock base %}

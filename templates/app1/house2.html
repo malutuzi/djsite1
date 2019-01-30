@@ -1,0 +1,66 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/house2.js'%}'></script>
+{% endblock linkscript %}
+
+{% block base %}
+    <h4><b>知晓房源调价历史，把握房主心理动态，谈价更有把握！</b></h4>
+    <h6>贴士:房主的心理状态（是否诚意卖、是否急售、心理底价等）,都体现在调价历史中！</h6>
+
+    <p><span style="margin-right: 30px">通过小区名查询房源：</span>   <span><a href='/house/'>切换回用房源编号查询房源</a></span></p>
+
+    <form name='myform' action="/house2ing/" method="POST">
+        {% csrf_token %}
+        输入小区名:<input  type="input" name="shequname3" id='shequid' placeholder="输入小区名(部分即可)"/>
+        <input type="submit" value='查询小区房源调价历史' id='query' />
+    </form>
+
+    <span>热门查询：</span>
+    <span><a href='/house2ing/?shequname=小南庄'>小南庄</a></span>
+    <span><a href='/house2ing/?shequname=融泽嘉园'>融泽嘉园</a></span>
+    <span><a href='/house2ing/?shequname=朗琴园'>朗琴园</a></span>
+    <span><a href='/shequing/?shequname=北苑家园'>北苑家园</a></span>
+    <span><a href='/shequing/?shequname=柏林爱乐'>柏林爱乐</a></span>
+    <span><a href='/shequing/?shequname=芍药居北里'>芍药居北里</a></span>
+    <span><a href='/shequing/?shequname=望京新城'>望京新城</a></span>
+    <br/>
+    <br/>
+
+    {% if shequname != '' %}
+
+        {% if namelen < 2 %}  
+            <span>请至少输入两个字！</span>
+        {% else %}
+            <span>您输入的小区是：<b>{{shequname}}</b></span>
+            <br/>
+
+            {% if count == 0 %}
+            <span>抱歉，没有找到匹配的小区。可尝试减少字数，比如“中信城”只输入“中信”试试看</span>
+            {% elif count == 1 %}
+            <!-- <span>{{match.0.2}}</span> -->
+            
+
+
+                
+                
+
+            {% else %}
+                <span>共找到{{count}}个匹配的小区，请选择一个：</span>
+                <br/>
+                {% for item in match %}
+                    <!-- <span>{{item.1}}，{{item.2}}</span> -->
+                    <span><a href='/shequing/?shequname={{item.1}}'>{{item.1}}</a></span>
+                    <br/>
+                {% endfor %}
+            {% endif %}    
+
+        {% endif %}
+
+    {% endif %}
+
+
+
+{% endblock base %}

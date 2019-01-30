@@ -1,0 +1,33 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/housechange.js'%}'></script>
+    
+{% endblock linkscript %}
+
+{% block base %}
+<p><b>本页是今日最新调价房源的涨跌排行榜</b></p>
+<span>今天是{{today.year}}-{{today.month}}-{{today.day}}，</span> <a id ='decrease' href='#'>今日降价房源top100  </a><span></span> <a id ='increase' href='#'>今日涨价房源top100</a>  <span style="margin-left: 20px;"><a href="/house">查询更多房源调价历史</a></span>
+<br/>
+
+<div id="decrease100">
+   <b>降价top100</b><br/>
+   {% for item in decrease100 %}
+    {{forloop.counter}}--{{item.shequ_name}}--{{item.district}}--{{item.square}}平米--{{item.ori}}--{{item.floor}}--当前价:{{item.price}}万--今日降幅:{{item.backup3}}%--<a  href='/housing/?houseid={{item.hid}}'>详情</a>
+    <br/>
+   {% endfor %}
+</div>
+
+<div id="increase100">
+   <b>涨价top100</b> <br/>
+   {% for item in increase100 %}
+   {{forloop.counter}}--{{item.shequ_name}}--{{item.district}}--{{item.square}}平米--{{item.ori}}--{{item.floor}}--当前价:{{item.price}}万--今日涨幅:{{item.backup3}}%--<a  href='/housing/?houseid={{item.hid}}'>详情</a>
+
+     <br/>
+   {% endfor %}
+
+</div>
+
+{% endblock base %}

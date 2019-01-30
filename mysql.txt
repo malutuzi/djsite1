@@ -1,0 +1,41 @@
+insert into app1_alldata(adate,ajw_sign,ajw_tarea,ajw_aarea,alj_deal,alj_house,alj_customer,alj_visit,alj_cuh_ratio,alj_vih_ratio)values('2018-10-13',34,3854.26,113.36,97,842,4602,29901,5.47,35.5);
+
+insert into app1_alldata(adate,ajw_sign,ajw_tarea,ajw_aarea,alj_deal,alj_house,alj_customer,alj_visit,alj_cuh_ratio,alj_vih_ratio)values('2018-10-14',45,3979.49,88.43,184,870,4473,25389,5.14,29.18);
+
+insert into app1_alldata(adate,ajw_sign,ajw_tarea,ajw_aarea,alj_deal,alj_house,alj_customer,alj_visit,alj_cuh_ratio,alj_vih_ratio)values('2018-10-15',521,47452.86,91.08,242,654,2057,3704,3.15,5.66);
+
+insert into app1_alldata(adate,ajw_sign,ajw_tarea,ajw_aarea,alj_deal,alj_house,alj_customer,alj_visit,alj_cuh_ratio,alj_vih_ratio)values('2018-10-16',424,39766.73,93.79,137,649,1989,4300,3.06,6.63);
+
+
+ mysqldump -h localhost -uroot -p djsite1 > djsite1-20181124.sql
+mysqldump -h localhost -uroot -pmmx500 djsite1 app1_alldata > djsite1-app1_alldata-20190103.sql
+mysqldump -h localhost -uroot -pmmx500 djsite1 app1_allsalehouse > djsite1-app1_allsalehouse-20190102.sql
+mysqldump -h localhost -uroot -pmmx500 djsite1 app1_allpies > djsite1-app1_allpies-20190102.sql
+mysqldump -h localhost -uroot -pmmx500 djsite1 app1_allshequdealhouse > djsite1-app1_allshequdealhouse-20190122.sql
+#  mysqldump -h localhost -uroot -pmmx500 djsite1 app1_alldealhouse > djsite1-app1_alldealhouse-20190102.sql
+
+mysqldump -h localhost -uroot -pmmx500 djsite1 app1_allljshequ > djsite1-app1_allljshequ-201901.sql
+ mysqldump -h localhost -uroot -pmmx500 djsite1 app1_allljbrokers > djsite1-app1_allljbrokers-20181124.sql
+mysqldump -h localhost -uroot -p djsite1 app1_allljshequ > djsite1-app1_allljshequ-20181127.sql
+mysqldump -h localhost -uroot -p djsite1 app1_allajkshequ > djsite1-app1_allajkshequ-20181127.sql
+source g:\Python\Source\django\djsite2\mysqlfiles\djsite2-app1_allljshequ-20181127.sql
+source g:\Python\Source\django\mysqlfiles\20181211\djsite2-app1_allljbrokers-20181211.sql
+
+source G:\Python\Source\django\mysqlfiles\alldb\djsite1-app1_allljshequ-201901.sql  #更新月度。
+
+set names gbk;
+use djsite1;
+
+source /usr/python/django/djsite1/mysqlfiles/djsite1-app1_alldata-20190102.sql
+source /usr/python/django/djsite1/mysqlfiles/djsite1-app1_allsalehouse-20190102.sql
+source /usr/python/django/djsite1/mysqlfiles/djsite1-app1_allpies-20190102.sql
+source /usr/python/django/djsite1/mysqlfiles/djsite1-app1_allshequdealhouse-20190122.sql
+#  source /usr/python/django/djsite1/mysqlfiles/djsite1-app1_alldealhouse-20190102.sql
+
+ delete from app1_allshequdealhouse where id > 137936;
+show table status from djsite1 like 'app1_alldata';
+
+mysql> alter table mailbox.mailbox auto_increment=20000;     
+
+show table status from djsite1 like 'app1_allshequdealhouse';
+alter table djsite1.app1_allshequdealhouse auto_increment=137937;

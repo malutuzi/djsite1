@@ -1,0 +1,165 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/pie.js'%}'></script>
+{% endblock linkscript %}
+
+{% block base %}
+    <h5>说明：本页笋盘是由<b>纯机器挑选</b>而出，根据报价与小区均价差距、近期调价行为、调价幅度等。</h5>
+    <h5>同一小区房子由于户型、楼座、楼层、名额/户口占用等不同本来就存在价差，筛选结果并不一定是真正笋盘。</h5>
+    <h4><b>建议和中介搞好关系、勤跑盘，结合本页信息，找出真正适合你的笋盘！</b></h4>
+    <br/>
+    <h5>今天是{{today.year}}-{{today.month}}-{{today.day}}，今日新增笋盘<b>{{p_newcount}}</b>套，共有笋盘<b>{{p_count}}</b>套：</h5>
+
+    <span><a href='#' id='s_p_new'><b>今日新增</b></a></span>
+    <span><a href='#' id='s_p_100'>全部</a></span>
+    <span><a href='#' id='s_piecy'>朝阳</a></span>
+    <span><a href='#' id='s_piehd'>海淀</a></span>
+    <span><a href='#' id='s_piedc'>东城</a></span>
+    <span><a href='#' id='s_piexc'>西城</a></span>
+    <span><a href='#' id='s_pieft'>丰台</a></span>
+    <span><a href='#' id='s_piesjs'>石景山</a></span>
+    <span><a href='#' id='s_pietz'>通州</a></span>
+    <span><a href='#' id='s_piecp'>昌平</a></span>
+    <span><a href='#' id='s_piedx'>大兴</a></span>
+    <span><a href='#' id='s_pieyz'>亦庄</a></span>
+    <span><a href='#' id='s_piesy'>顺义</a></span>
+    <span><a href='#' id='s_piefs'>房山</a></span>
+    <span><a href='#' id='s_piemtg'>门头沟</a></span>
+    <span><a href='#' id='s_pieothers'>平谷怀柔密云延庆</a></span>
+    <br/>
+
+    <div id = 'p_new'>
+                <h5>今日新增笋盘共{{p_newcount}}条。最多显示100条：</h5>
+                {% for pie in p_new %}
+                <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}}  <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+                <br/>
+                {% endfor %}
+    </div>
+
+    <div id = 'p_100'>
+        <h5>全部笋盘共{{p_count}}条。最多显示100条：</h5>
+        {% for pie in p_100 %}
+        <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}}  <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+        <br/>
+        {% endfor %}
+    </div>
+
+    <div id = 'piecy'>
+            <h5>朝阳笋盘{{cycount}}条。最多显示100条：</h5>
+            {% for pie in piecy %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+
+    <div id = 'piehd'>
+        <h5>海淀笋盘{{hdcount}}条。最多显示100条：</h5>
+        {% for pie in piehd %}
+        <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}}  <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+        <br/>
+        {% endfor %}
+    </div>
+
+    <div id = 'piedc'>
+            <h5>东城笋盘{{dccount}}条。最多显示100条：</h5>
+            {% for pie in piedc %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+    
+    <div id = 'piexc'>
+            <h5>西城笋盘{{xccount}}条。最多显示100条：</h5>
+            {% for pie in piexc %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+    
+    <div id = 'pieft'>
+            <h5>丰台笋盘{{ftcount}}条。最多显示100条：</h5>
+            {% for pie in pieft %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+
+    <div id = 'piesjs'>
+            <h5>石景山笋盘{{sjscount}}条。最多显示100条：</h5>
+            {% for pie in piesjs %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}}  <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+    
+    
+    <div id = 'pietz'>
+            <h5>通州笋盘{{tzcount}}条。最多显示100条：</h5>
+            {% for pie in pietz %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}}  <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+    
+    <div id = 'piecp'>
+            <h5>昌平{{cpcount}}条。最多显示100条：</h5>
+            {% for pie in piecp %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+        </div>
+    
+    <div id = 'piedx'>
+            <h5>大兴笋盘{{dxcount}}条。最多显示100条：</h5>
+            {% for pie in piedx %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}}  <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+        </div>
+    
+    <div id = 'pieyz'>
+            <h5>亦庄笋盘{{yzcount}}条。最多显示100条：</h5>
+            {% for pie in pieyz %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+
+    <div id = 'piesy'>
+            <h5>顺义笋盘{{sycount}}条。最多显示100条：</h5>
+            {% for pie in piesy %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+
+    <div id = 'piefs'>
+            <h5>房山笋盘{{fscount}}条。最多显示100条：</h5>
+            {% for pie in piefs %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+
+    <div id = 'piemtg'>
+            <h5>门头沟笋盘{{mtgcount}}条。最多显示100条：</h5>
+            {% for pie in piemtg %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+
+    <div id = 'pieothers'>
+            <h5>平谷怀柔密云延庆笋盘{{otherscount}}条。最多显示100条：</h5>
+            {% for pie in pieothers %}
+            <b>笋盘</b>：{{pie.shequ_name}}-{{pie.shape}}-{{pie.square}}平米-朝向:{{pie.ori}}-{{pie.floor}}-总价{{pie.price}}-单价{{pie.unitprice}} <a  href='/housing/?houseid={{pie.hid}}'>详情</a>
+            <br/>
+            {% endfor %}
+    </div>
+
+    <p><a href="/housechange"><b>查询每日房源涨跌榜</a></b></p>
+
+{% endblock base %}

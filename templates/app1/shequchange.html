@@ -1,0 +1,34 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/shequchange.js'%}'></script>
+    
+{% endblock linkscript %}
+
+{% block base %}
+
+<span><b>2018年12月</b></span> <a id ='decrease' href='#'>降价top100  </a><span></span> <a id ='increase' href='#'>涨价top100</a> <span></span> <span style="margin-left: 20px;"><a href="/shequ">查看更多小区走势</a></span>
+<br/>
+
+<div id="decrease100">
+   <b>小区月环比跌幅top100</b><br/>
+   {% for item in decrease100 %}
+    {{forloop.counter}}--{{item.lname}}--{{item.ldistrict}}--当前价:{{item.lprice}}--环比跌幅:{{item.trend}}%--<a target='_blank' href={{item.lurl}}>详情</a>
+    <br/>
+   {% endfor %}
+</div>
+
+<div id="increase100">
+   <b>小区月环比涨幅top100</b> <br/>
+   {% for item in increase100 %}
+     {{forloop.counter}}--{{item.lname}}--{{item.ldistrict}}--当前价:{{item.lprice}}--环比涨幅:{{item.trend}}%
+     --<a target='_blank' href={{item.lurl}}>详情</a>
+
+     <br/>
+   {% endfor %}
+
+</div>
+
+{% endblock base %}

@@ -1,0 +1,28 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>这是趋势图的中间页</title>
+        <!-- 这个页面是用于提供给ajax调用的 -->
+        {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script> 
+        {% endfor %}
+    </head>
+    <body>
+        <div id="pos1_7">
+            <span >{{ chart_d7|safe }}这是图后面的话新的</span>
+        </div>
+
+
+        <span id='divider1'>1-------------------</span>
+
+        <div>    
+            <span id="pos1_15">{{ chart_d15|safe }}</span>
+        </div>
+        
+        <span id='divider2'>2-------------------</span>
+            
+
+    </body>
+</html>

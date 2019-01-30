@@ -1,0 +1,20 @@
+<!-- myfirstvis/templates/pyecharts.html -->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Proudly presented by PycCharts</title>
+    <!-- 逐个加载js依赖库 -->
+    {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script> 
+    {% endfor %}
+</head>
+
+<body>
+  {{ myechart|safe }}   
+  <!-- 过滤乱码字符 -->
+</body>
+
+</html>
+

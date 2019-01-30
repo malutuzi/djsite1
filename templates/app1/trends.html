@@ -1,0 +1,109 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/trends.js'%}'></script>
+    {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script> 
+    {% endfor %}
+{% endblock linkscript %}
+
+
+{% block base %}
+        <h4><b>北京全市二手房均价趋势图</b></h4> 
+        <div id='pos0'>
+                <span id = 'pos0_all'>
+                        {{ chart_price|safe }}  
+                </span>
+                       
+        </div>
+
+        <h4><b>日成交量/网签量趋势图</b></h4>        
+        <form style='padding-left: 60px;'>
+                <input id='day1_30' type="radio" name="range1"  checked>最近1月 
+                <span>    </span>
+                <input id='day1_90' type="radio" name="range1" >最近1季        
+                <!-- <span>    </span> -->
+                <!-- <input id='day1_365' type="radio" name="range1" >最近1年                    -->
+        </form> 
+        <div id='pos1'>
+                <span id = 'pos1_30'>
+                        {{ chart_d30|safe }}  
+                </span>
+                <span id = 'pos1_90'>
+                        {{ chart_d90|safe }}  
+                </span>
+                <!-- <span id = 'pos1_365'>
+                        {{ chart_d365|safe }}  
+                </span> -->
+                
+        </div>
+
+        <h4><b>网签套均面积趋势图</b></h4>        
+        <form style='padding-left: 60px;'>
+                <input id='day2_7' type="radio" name="range2" checked>最近1周
+                <span>    </span>
+                <input id='day2_30' type="radio" name="range2"  >最近1月         
+        </form> 
+        <div id='pos2'>
+                <span id = 'pos2_7'>
+                        {{ chart_a7|safe }}  
+                </span>
+                <span id = 'pos2_30'>
+                        {{ chart_a30|safe }}  
+                </span>
+                
+        </div>
+        
+
+        <h4><b>新增客/新增带看趋势图</b></h4>        
+        <form style='padding-left: 60px;'>
+                <input id='day3_7' type="radio" name="range3" checked>最近1周
+                <span>    </span>
+                <input id='day3_30' type="radio" name="range3"  >最近1月         
+        </form> 
+        <div id='pos3'>
+                <span id = 'pos3_7'>
+                        {{ chart_cv7|safe }}  
+                </span>
+                <span id = 'pos3_30'>
+                        {{ chart_cv30|safe }}  
+                </span>
+                
+        </div>
+        
+        <h4><b>客房比/看房比趋势图</b></h4> 
+        <h5>客房比:每套房多少客户；看房比：每套房多少次看房。代表供需程度，越大市场越火热</h5>       
+        <form style='padding-left: 60px;'>
+                <input id='day4_7' type="radio" name="range4" checked>最近1周
+                <span>    </span>
+                <input id='day4_30' type="radio" name="range4"  >最近1月         
+        </form> 
+        <div id='pos4'>
+                <span id = 'pos4_7'>
+                        {{ chart_cvr7|safe }}  
+                </span>
+                <span id = 'pos4_30'>
+                        {{ chart_cvr30|safe }}  
+                </span>
+                
+        </div>
+
+        <h4><b>链家在售房源数趋势图</b></h4>        
+        <form style='padding-left: 60px;'>
+                <input id='day5_7' type="radio" name="range5" checked>最近1周
+                <span>    </span>
+                <input id='day5_30' type="radio" name="range5"  >最近1月         
+        </form> 
+        <div id='pos5'>
+                <span id = 'pos5_7'>
+                        {{ chart_s7|safe }}  
+                </span>
+                <span id = 'pos5_30'>
+                        {{ chart_s30|safe }}  
+                </span>
+                
+        </div>
+
+{% endblock base %}

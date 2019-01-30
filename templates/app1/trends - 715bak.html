@@ -1,0 +1,50 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/trends.js'%}'></script>
+    {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script> 
+    {% endfor %}
+{% endblock linkscript %}
+
+
+{% block base %}
+
+    <h4><b>成交量趋势图</b></h4>        
+    <form style='padding-left: 60px;'>
+            <input id='day1_7' type="radio" name="range1" >最近7天
+            <span>    </span>
+            <input id='day1_15' type="radio" name="range1"  checked>最近15天            
+    </form> 
+    <div id='pos1'>
+        <span id = 'pos1_7'>
+                {{ chart_d7|safe }}  
+        </span>
+        <span id = 'pos1_15'>
+                {{ chart_d15|safe }}  
+        </span>
+        
+    </div>
+
+    <h4><b>套均面积趋势图</b></h4>        
+    <form style='padding-left: 60px;'>
+            <input id='day2_7' type="radio" name="range2" >最近7天
+            <span>    </span>
+            <input id='day2_15' type="radio" name="range2"  checked>最近15天            
+    </form> 
+    <div id='pos2'>
+            <span id = 'pos2_7'>
+                    {{ chart_a7|safe }}  
+            </span>
+            <span id = 'pos2_15'>
+                    {{ chart_a15|safe }}  
+            </span>
+            
+    </div>
+    
+
+
+
+{% endblock base %}

@@ -1,0 +1,28 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/mobile.js'%}'></script>
+{% endblock linkscript %}
+
+{% block base %}
+<h5>注：由于完全系个人业余时间开发，移动版敬请耐心等待。任何意见建议，请<a href='/about/#contact'>联系我</a></h5>
+<h4><b>2019年1月9日，几经磨难，小程序版1.0终于正式上线！</b></h4>
+<br/>
+
+
+<h4><b>一、小程序版（2019-01-09第一版上线）</b></h4>
+<h5>用微信扫描下面二维码即可使用“几套房”小程序版</h5>
+<img src='{% static 'app1/img/xcx8.jpg' %}' style="border:1px solid black"/>
+<h5>或者打开微信，点击“发现”---“小程序”，输入“几套房”进行搜索，</h5>
+<h5>出来的“几套房JTF”就是事儿哥本尊开发的小程序无疑。</h5>
+
+<h4><b>二、移动Wap版</b></h4>
+<h5>除了小程序，"jitaofang.com"，目前也支持手机浏览器访问。</h5>
+<h5>用手机浏览器访问，功能与电脑的网页版完全一样。</h5>
+<h5>注意：手机浏览器版的“导航栏”在右上角，点击会展开。</h5>
+<img src='{% static 'app1/img/mobile-1.jpg' %}' style="border:1px solid black"/>
+
+
+{% endblock base %}

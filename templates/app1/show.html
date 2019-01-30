@@ -1,0 +1,40 @@
+{% load static from staticfiles %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>这是链家在售信息</title>
+        <script src='{% static 'app1/js/jquery-1.11.3.min.js'%}'></script>
+        <script src='{% static 'app1/js/show.js'%}'></script>
+        {% for jsfile_name in script_list %}
+            <script src="{{ host }}/{{ jsfile_name }}.js"></script> 
+        {% endfor %}
+    </head>
+    <body>
+        <h1>链家在售实时更新</h1>
+
+        <div>
+            <span id='realtime' >现在在售房屋{{cursell.snumber}}套</span>
+            <span>   </span>
+            <button id='refresh'>刷新</button>
+        </div>
+
+        <br/>
+
+        <hr>
+        <h1>抓取历史</h1>
+        <button type="button" id='alter'>切换显示</button>
+        <!-- <button onclick="hidehis()">隐藏</button> -->
+        <div id = 'history'>
+            {% for sell in allsell reversed %}
+            <span>现在在售房屋{{sell.snumber}}套 抓取时间{{sell.stime}}</span>
+            <br/>
+            {% endfor %}
+        </div>
+        <br/>
+        <span>{{ myechart|safe }}   </span>
+        <!-- 过滤乱码字符 -->
+        
+
+    </body>
+</html>

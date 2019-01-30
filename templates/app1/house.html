@@ -1,0 +1,122 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/house.js'%}'></script>
+    {% for jsfile_name in script_list %}
+        <script src="{{ host }}/{{ jsfile_name }}.js"></script> 
+    {% endfor %}
+{% endblock linkscript %}
+
+
+{% block base %}
+
+    <h4><b>知晓房源调价历史，把握房主心理动态，谈价更有把握！</b></h4>
+    <h6>贴士:房主的心理状态（是否诚意卖、是否急售、心理底价等）,都体现在调价历史中！</h6>
+    <h6><b style="color: brown">2019-01-22日：新增“显示同户型历史成交”功能</b></h6>
+    
+    
+
+
+    <form action="/housing/" method="POST">
+        {% csrf_token %}
+        <b>输入链家房源编号:</b><input type="input" name="houseid"  placeholder="例如'101101982696'"/>
+        <input type="submit" value='查询调价历史' />
+    </form>
+    
+    <h6><b>Tips:</b>嫌输入房源编号太麻烦？<a href="/shequ/"><b>试试用小区名直接查房源调价历史</b></a></h6>
+    <br/>
+
+    {% if houseid != '' %}
+        <span>您输入的房源编号是：<b>{{houseid}}</b>,查询结果如下：</span>
+        <br/>
+
+        {% if house_obj != '' %}
+        房屋信息：<span><b>"{{house_obj.shequ_name}}，{{house_obj.shape}}，{{house_obj.square}}平米，报价{{house_obj.price}}元"，<a  target='_blank' href='{{house_obj.hurl}}'>详情</a></b></span><br/>
+        {% endif %}
+
+        {% if h_type == 'ershoufang' %}
+            {% if times == 0 %}
+            <span>该房的状态为：<b>在售</b>；但目前查不到报价历史。</span> <br/>
+            <span>可能是新上房源，数据库等待更新，请尝试查查其他房源</span>
+            {% else %}
+                <span>该房的状态为：<b>在售</b>；一共有过{{times}}次报价：</span> <br/>
+                <br/>
+                {% for item in h_list %}
+                    <span>时间：{{item.0}}   {{item.2}}：{{item.1}}</span><br/>
+                {% endfor %}
+                <br/>
+                <span id = 'ershoufang'>{{ h_chart|safe }}  </span>
+
+                <span><b>同户型历史成交价：</b></span><br/>
+                {%if samecount != 0%}
+                    {% for sale in saleobj%}
+
+                        {{forloop.counter}}--{{sale.shequ_name}}--{{sale.square}}--{{sale.ori}}--{{sale.floor}}--{{sale.deal_price}}万--{{sale.deal_date}}成交--<a  target='_blank' href='{{sale.hurl}}'>详情</a>
+                        <br/>
+                    {% endfor %}
+                {% else %}
+                    <span>没有找到同户型的历史成交。</span><br/>
+                {% endif %}
+            {% endif %}
+
+        {% elif h_type == 'chengjiao' %}
+            <span>该房的状态为：<b>已成交</b>。成交前一共有过{{times}}次报价：</span><br/>
+            <br/>
+            {% for item in h_list %}
+                <span>时间：{{item.0}}   {{item.2}}：{{item.1}}</span><br/>
+            {% endfor %}
+                <span>时间：{{deal.0}}   <b>成交</b>：{{deal.1}}</span><br/>
+            <br/>
+            <span id = 'chengjiao'>{{ h_chart|safe }}  </span>
+            <span><b>同户型历史成交价：</b></span><br/>
+            {%if samecount != 0%}
+                {% for sale in saleobj%}
+
+                    {{forloop.counter}}--{{sale.shequ_name}}--{{sale.square}}--{{sale.ori}}--{{sale.floor}}--{{sale.deal_price}}万--{{sale.deal_date}}成交--<a  target='_blank' href='{{sale.hurl}}'>详情</a>
+                    <br/>
+                {% endfor %}
+            {% else %}
+                <span>没有找到同户型的历史成交。</span><br/>
+            {% endif %}
+
+            
+        {% else %}
+            <span><b>输入的房源编号"{{houseid}}"检索不到，请重新输入！</b></span>
+            <br/><br/>
+
+            <span>如果您确认输入的房源编号正确，那么可能是以下几种原因：</span>
+            <br/>
+            <span>1:房源刚刚上架（或刚刚下架），数据库还没有更新</span>
+            <br/>
+            <span>2:房源是很久以前的老数据，如仍希望查询，可以<a href='#'>联系我</a>，单独为您查询</span>
+            <br/>
+        {% endif %}
+
+    {% endif %}
+
+    <br/>
+    <span id='introstart'style="font-size: 16px"><b>如何查找链家房源编号？ </b></span><a id='alter' href='#introstart'>+展开/收起说明</a>
+    <div class='container' id='intro'>
+        <div class="row">
+            <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+            margin-top: 5px;margin-bottom: 5px;">
+           
+                <p><b>一、电脑上，链家房源编号的查看方法：</b></p>
+                <p>（1）打开房源详情页即可看到</p>
+                <img src='{% static 'app1/img/hidbyweb.jpg' %}' style="border:1px solid black"/>
+                <p>（2）查看页面url："https://bj.lianjia.com/ershoufang/101103625424.html",</p>
+                <p>“.html”前面那个数字"101103625424"就是 </p>
+
+                <p><b>二、链家App上，链家房源编号的查看方法：</b></p>
+                <p>（1）首先在房源详情页点击“更多房源信息”</p>
+                <img src='{% static 'app1/img/hidbyapp1.jpg' %}' style="border:1px solid black"/>
+                <p>（2）在接下来页面的下半部可以看到房源编号</p>
+                <img src='{% static 'app1/img/hidbyapp2.jpg' %}' style="border:1px solid black"/>
+                    
+                        
+            </div>
+        </div>  <!--  row-->       
+    </div>
+{% endblock base %}

@@ -1,0 +1,178 @@
+
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+{% block linkscript %}
+<script src='{% static 'app1/js/index.js'%}'></script>
+{% endblock linkscript %}
+
+{% block base %}
+
+
+
+
+<span>您好！今天是北京时间<b>{{today.year}}年{{today.month}}月{{today.day}}日</b>  星期{{weekday}} 。 </span>
+<span style="margin-left: 10px;"><b>最新更新:</b><a href="/house"><b style="color:red">"显示同户型历史成交"隆重上线！</b> </a>(2019-01-22日)</span>
+
+<div class="container">
+    <div class="row">
+            <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+            margin-top: 1px;margin-bottom: 1px;">
+                <b>在本站您可以：</b>
+                <!-- <ul>
+                    <li style="font-size: 10px;">2018-12-6:修正<a href='/pie'>每日笋盘</a>中含地下室/车位问题</li>
+                    <li style="font-size: 10px;">2018-12-12:网友期待的<a href="/shequ"><b>通过小区查找最靠谱经纪人</b></a>功能隆重上线<b style="color: brown"> hot!</b></li>
+                </ul> -->
+                <ul>
+                    <li style="font-size: 10px;"><a href="/"><b>今日大盘:</b></a>北京房市各类统计数据，包括成交量、涨跌量、走势等</li>
+                    <li style="font-size: 10px;"><a href="/shequ"><b>小区查询:</b></a>查询北京12000个小区历史价格；查询本小区经纪人数据;查询小区房源 <b style="color: brown"> hot!</b></li>
+                    <li style="font-size: 10px;"><a href="/house"><b>房源查询:</b></a>查询房源（在售/成交）的调价历史，洞悉业主心理,显示同户型历史成交</li>
+                    <li style="font-size: 10px;"><a href="/pie"><b>每日笋盘:</b></a>机器推荐笋盘，如价格远低于小区均价、连续降价等。每日更新</li>
+                    <li style="font-size: 10px;"><a href="/query"><b>历史数据:</b></a>北京房市往日历史数据查询，历史走势图</li>
+                    <li style="font-size: 10px;"><a href="/loan"><b>贷款服务:</b></a>各类优质抵押贷款服务，特色服务，房产疑难咨询等</li>
+                    
+                </ul>
+                
+            </div>
+        </div>  <!--  row-->
+
+    <div class="row">
+        <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+        box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444; margin-top: 5px;margin-bottom: 5px;">
+            <h4><b>全市均价数据：</b></h4>
+            <h5>2018年12月均价为<b>61078</b>,环比上月下降<b>2.1%</b>  <a href='/trends/#pos0'>查看走势</a></h5>
+            
+        </div>
+    </div>  <!--  row-->
+
+    <div class="row">  
+        <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+        box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;margin-top: 5px;margin-bottom: 5px;">
+            <h4><b>每日成交数据:</b><span style="font-size: 14px;">(最新数据日期{{newitem.adate|date:'Y-m-d'}})</span></h4>
+            <div style="padding-left: 5px;">
+                <h5>建委二手房网签量为：<b>{{newitem.ajw_sign}}</b>，前日网签量为<b>{{lastitem.ajw_sign}}</b>。  <a   href='/trends/#pos1'>查看走势</a></h5>
+            
+                <h5>链家二手房成交量为：<b>{{newitem.alj_deal}}</b>，前日成交量为<b>{{lastitem.alj_deal}}</b>。  <a   href='/trends/#pos1'>查看走势</a></h5> 
+            </div>
+            
+
+            <a id='alter' href='#'>+展开/收起更多详细数据</a>
+
+            <div id="detail">
+               
+            <table class="table table-bordered table-condensed" style="width: 370px;">
+                <thead>
+                    <tr class='info' >
+                        <th>项目</th>
+                        <th>{{newitem.adate|date:"m-d"}}数据</th>
+                        <th>{{lastitem.adate|date:"m-d"}}数据</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                
+                <tbody>
+                    <tr>
+                        <td colspan="4" align="center" valign="middle"><b>建委数据</b></td>
+                    <tr>
+                        <td>二手房网签量</td>
+                        <td>{{newitem.ajw_sign}}</td>
+                        <td>{{lastitem.ajw_sign}}</td>
+                        <th><a href='/trends/#pos1'>走势</a></th>
+                    </tr>
+                    <tr>
+                        <td>总成交面积</td>
+                        <td>{{newitem.ajw_tarea}}</td>
+                        <td>{{lastitem.ajw_tarea}}</td>
+                        <td>N/A</td>
+                    </tr>
+                    <tr>
+                        <td>套均面积</td>
+                        <td>{{newitem.ajw_aarea}}</td>       
+                        <td>{{lastitem.ajw_aarea}}</td>       
+                        <th><a href='/trends/#pos2'>走势</a></th>
+                    </tr>
+                    
+                    <tr>
+                        <td colspan="4" align="center" valign="middle"><b>链家数据</b></td>
+                        
+                    </tr>
+                    <tr >
+                        <td>成交量</td>
+                        <td>{{newitem.alj_deal}}</td>     
+                        <td>{{lastitem.alj_deal}}</td>       
+                        <th><a href='/trends/#pos1'>走势</a></th>
+                    </tr>
+                    <tr>
+                        <td>新增房</td>
+                        <td>{{newitem.alj_house}}</td>
+                        <td>{{lastitem.alj_house}}</td>
+                        <th>N/A</th>
+                    </tr>
+                    <tr>
+                        <td>新增客</td>
+                        <td>{{newitem.alj_customer}}</td>
+                        <td>{{lastitem.alj_customer}}</td>
+                        <th><a href='/trends/#pos3'>走势</a></th>
+                    </tr>
+                    <tr>
+                        <td>新增带看</td>
+                        <td>{{newitem.alj_visit}}</td>
+                        <td>{{lastitem.alj_visit}}</td>
+                        <th><a href='/trends/#pos3'>走势</a></th>
+                    </tr>
+                    <tr>
+                        <td>客房比</td>
+                        <td>{{newitem.alj_cuh_ratio}}</td>
+                        <td>{{lastitem.alj_cuh_ratio}}</td>
+                        <th><a href='/trends/#pos4'>走势</a></th>
+                    </tr>
+                    <tr>
+                        <td>看房比</td>
+                        <td>{{newitem.alj_vih_ratio}}</td>
+                        <td>{{lastitem.alj_vih_ratio}}</td>
+                        <th><a href='/trends/#pos4'>走势</a></th>
+                    </tr>
+                    <tr>
+                        <td>在售房源数</td>
+                        <td>{{newitem.snumber}}</td>
+                        <td>{{lastitem.snumber}}</td>
+                        <td><a href='/trends/#pos5'>走势</a></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h6><b>指标说明：</b></h6>
+            <h6><b>客房比</b>:每套房多少客户；<b>看房比</b>：每套房多少次看房。代表供需程度，越大市场越火热</h6> 
+            <h6><b>网签一般发生在签合同1~6周后，有一定延时效应。链家成交量一般在签合同1~3天内更新，更具实时性。</h6> 
+            </div>
+        </div>
+        
+        
+    </div>  <!--  row-->
+
+   
+        
+    <div class="row">
+        <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+        box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444; margin-top: 5px;margin-bottom: 5px;">
+            <h4><b>房源调价数据:</b><span style="font-size: 14px;">(目前共有房源数据<b>{{p_house}}</b>套，成交数据<b>{{p_deal}}</b>套)</span></h4>
+            <h5><span>{{newitem.adate|date:'Y-m-d'}}日，在售二手房源数为 <b>{{newitem.snumber}}</b>。<a href='/trends/#pos5'>查看走势</a></span></h5>
+            <h5>本日涨价房源 <a href='/housechange/'><b>{{dayud.0}}</b> </a>套,降价房源<a href='/housechange/'><b>{{dayud.1}}</b> </a> 套。<a href='/house'>查询更多房源调价历史</a></h5>
+            <h5>本日新增笋盘<a href='/pie/'><b>{{p_newcount}}</b></a>套，目前共有笋盘<a href='/pie/'><b>{{p_count}}</b></a>套，<a href='/pie/'>查看笋盘详情</a></h5>
+
+                    
+        </div>
+    </div>  <!--  row-->       
+
+    <div class="row">
+        <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+        box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444; margin-top: 5px;margin-bottom: 5px;">
+            <h4><b>小区均价数据：</b><span style="font-size: 14px;">(目前共统计小区<b>{{p_shequ}}</b>个)</span></h4>
+            <h5>2018年12月均价环比上涨小区 <a href='/shequchange'><b>{{monthudn.0}}</b> </a>个,均价下降小区 <a href='/shequchange'>  <b>{{monthudn.1}}</b> </a>个,均价持平<a href="/shequchange"> <b>{{monthudn.2}}</b> </a>  个。<a href='/shequ'>查询更多小区走势</a></h5>        
+        </div>
+    </div>  <!--  row-->       
+    
+    
+</div> <!--  container-->
+
+
+{% endblock base %}

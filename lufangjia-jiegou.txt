@@ -1,0 +1,23 @@
+     hid = models.CharField(max_length=20)     'house_code': '101102983348',
+    district = models.CharField(max_length=30)   'district_bak': '朝阳',
+    str_his = models.CharField(max_length=300)  #每次调价15位，支持20次调价。
+    times = models.IntegerField()
+    price = models.CharField(max_length=15)   'total_price': '819',
+    unitprice = models.CharField(max_length=15)    'unit_price': '88407',
+    shequ_name = models.CharField(max_length=40)   #小区名字 'community': '首城国际',
+    shape = models.CharField(max_length=10)       'bedroomNum': '2',  'hallNum': '1',
+    square = models.CharField(max_length=10)      'area': 89.36,
+    ori = models.CharField(max_length=10)          'orientation': '西南 北',
+    deco = models.CharField(max_length=10)       'decoration': '精装',
+    ele = models.CharField(max_length=5)  #因为还有空字段，所以用Char     'elevator': '1',
+    floor = models.CharField(max_length=20)   'floor': '中楼层 (共28层)',
+    year = models.CharField(max_length=5)    'construct_year': '2010',
+    biz = models.CharField(max_length=10)    'location': '双井',
+    hurl = models.CharField(max_length=100)    'url': 'https://bj.ke.com/chengjiao/101102983348.html',  
+                                                'url': 'https://bj.ke.com/ershoufang/101103625424.html',
+    isSold = models.BooleanField(default=False)   查url就可以了。
+
+    shequ_id = models.CharField(max_length=20)    #小区id  新增   'community_id': '1111027375384',
+    dealprice = models.CharField(max_length=15,default='')    #新增    'dealt_total_price': 790,
+    backup1 = models.CharField(max_length=20,default='')     #新增     'dealt_time': '2018-11-05 00:00:00',
+    backup2 = models.CharField(max_length=20,default='')     #新增 

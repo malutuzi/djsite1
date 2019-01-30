@@ -1,0 +1,44 @@
+{%  extends 'app1/base.html' %}
+<!-- {% load static from staticfiles %} -->
+
+
+{% block linkscript %}
+    <script src='{% static 'app1/js/loan.js'%}'></script>
+{% endblock linkscript %}
+
+{% block base %}
+
+
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+            box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444; margin-top: 5px;margin-bottom: 5px;">
+                <h4><b>贷款服务</b></h4>
+                <ul>
+                    <li><h5>提供各类抵押贷款，消费贷、经营贷、一抵、二抵咨询服务</h5></li>
+                    <li><h5>消费贷最低上浮10%，经营贷一抵二抵基准利率起</h5></li>
+                    <li><h5><b>目前强烈推荐“4+3”贷款，过户前商贷+抵押一次完成，凑首付神器</b></h5></li>
+                    <li><b style="color:red">各类疑难咨询服务（如无法贷款、购房资格、不能首套等等）</b></li>
+                    <h5>以上欲咨询详情，请<a href="/about/#contact">联系我</a></h5>
+
+                </ul>
+                
+               
+                
+                 
+            </div>
+        </div>  <!--  row-->
+
+        <div class="row">
+            <div class="col-xs-12 col-md-7" style="background-color:whitesmoke;
+            box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444; margin-top: 5px;margin-bottom: 5px;">
+                <h4><b>其他服务</b></h4>
+                
+                <h5>定制类(如面询)服务，资源互换等，请<a href="/about/#contact">联系我</a></h5>
+                     
+            </div>
+        </div>  <!--  row-->
+
+</div>
+
+{% endblock base %}
